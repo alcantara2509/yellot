@@ -17,4 +17,8 @@ export const globalStyles = StyleSheet.create({
     white: "white",
     background: "#FBFBFB",
   },
+
+  flexRow: {
+    flexDirection: "row",
+  },
 });

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { infoService } from "../../services/info.services";
+import { useMyStore } from "../../store";
 
 export const useGetAll = (period) => {
   const [data, setData] = useState([]);

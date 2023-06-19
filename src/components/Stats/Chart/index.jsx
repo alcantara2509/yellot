@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Dimensions, View, Text } from "react-native";
-import { LineChart } from "react-native-gifted-charts";
+import { BarChart } from "react-native-gifted-charts";
+import moment from "moment";
 import { globalStyles } from "../../../styles/globalStyles";
+import { styles } from "./styles";
 
-const HomeCharts = ({ data }) => {
+const StatsChart = ({ data }) => {
   const [dataChart, setDataChart] = useState([]);
   const [reference, setReference] = useState(60);
-
-  const handleXLabels = (items) => items?.map((e) => e.replace(/:[^:]*$/, ""));
 
   useEffect(() => {
     let newArray = [];
@@ -15,19 +15,32 @@ const HomeCharts = ({ data }) => {
     data?.generation?.forEach((x, i) => {
       newArray.push({
         value: x,
-        label: handleXLabels(data?.x_labels)[i],
+        label:
+          data?.data_type === "daily"
+            ? moment(data?.x_labels[i]).format("DD/MM")
+            : data?.data_type === "monthly"
+            ? moment(data?.x_labels[i]).format("MM/YY")
+            : moment(data?.x_labels[i]).format("YYYY"),
+        spacing: 2,
       });
+
+      if (i % 1 === 0) {
+        newArray.push({
+          value: data?.expected[i] || 0,
+          spacing: 16,
+          frontColor: globalStyles.colors.gray,
+        });
+      }
     });
 
     setReference(data?.expected?.[1]);
     setDataChart(newArray);
-    console.log(newArray);
   }, [data]);
 
   return (
     <View>
       <View style={{ marginBottom: 40, marginLeft: -4 }}>
-        <LineChart
+        <BarChart
           data={dataChart}
           showScrollIndicator={true}
           width={Dimensions.get("window").width - 100}
@@ -57,9 +70,19 @@ const HomeCharts = ({ data }) => {
             marginLeft: 7,
           }}
         />
+        <View style={globalStyles.flexRow}>
+          <View style={[globalStyles.flexRow, styles.subtitleContainer]}>
+            <View style={styles.squareReal}></View>
+            <Text style={styles.subtitleText}>Geração Real</Text>
+          </View>
+          <View style={[globalStyles.flexRow, styles.subtitleContainer]}>
+            <View style={styles.squareExpected}></View>
+            <Text style={styles.subtitleText}>Geração Esperada</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
 };
 
-export default HomeCharts;
+export default StatsChart;

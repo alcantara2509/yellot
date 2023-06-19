@@ -1,9 +1,26 @@
-import { StyleSheet, Text, SafeAreaView } from "react-native";
+import { SafeAreaView, View } from "react-native";
+import { globalStyles } from "../../styles/globalStyles";
+import StatsChart from "../../components/Stats/Chart";
+import Totals from "../../components/Home/Totals";
+import { useGetAll } from "../../hooks/useGetData";
+import Period from "../../components/Stats/Period";
+import { useMyStore } from "../../store";
+import Loading from "../../components/Loading";
 
-export default function Home() {
+const Stats = () => {
+  const [selectedPeriod] = useMyStore();
+  const [data, loading] = useGetAll(selectedPeriod);
+
   return (
-    <SafeAreaView>
-      <Text>Stats</Text>
+    <SafeAreaView style={globalStyles.container}>
+      {loading && <Loading />}
+      <View>
+        <Period />
+        <StatsChart data={data} loading={loading} />
+        <Totals data={data} loading={loading} />
+      </View>
     </SafeAreaView>
   );
-}
+};
+
+export default Stats;

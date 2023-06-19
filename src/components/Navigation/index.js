@@ -64,7 +64,7 @@ const Tabs = () => {
       />
 
       <Tab.Screen
-        name="Produção"
+        name="Geração"
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -103,7 +103,7 @@ const Tabs = () => {
                   top: -23,
                 }}
               >
-                Produção
+                Geração
               </Text>
             </View>
           ),
