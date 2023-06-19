@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Dimensions, View, Text } from "react-native";
+import { Dimensions, View } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
 import { globalStyles } from "../../../styles/globalStyles";
 
 const HomeCharts = ({ data }) => {
   const [dataChart, setDataChart] = useState([]);
-  const [reference, setReference] = useState(60);
 
   const handleXLabels = (items) => items?.map((e) => e.replace(/:[^:]*$/, ""));
 
@@ -19,33 +18,26 @@ const HomeCharts = ({ data }) => {
       });
     });
 
-    setReference(data?.expected?.[1]);
     setDataChart(newArray);
-    console.log(newArray);
   }, [data]);
 
   return (
     <View>
-      <View style={{ marginBottom: 40, marginLeft: -4 }}>
+      <View style={{ marginBottom: 40, marginLeft: -4, marginTop: 50 }}>
         <LineChart
           data={dataChart}
           showScrollIndicator={true}
-          width={Dimensions.get("window").width - 100}
+          width={Dimensions.get("window").width - 110}
           xAxisColor={globalStyles.colors.mediumGray}
-          initialSpacing={10}
-          barWidth={16}
-          height={220}
+          color1={globalStyles.colors.primary}
+          initialSpacing={20}
+          hideDataPoints
+          thickness={4}
+          height={190}
           yAxisThickness={0}
           topColor={"red"}
-          frontColor={globalStyles.colors.primary}
-          hideRules
-          showReferenceLine1
-          referenceLine1Position={reference / 2 || 60}
-          referenceLine1Config={{
-            color: globalStyles.colors.mediumGray,
-            dashWidth: 4,
-            dashGap: 5,
-          }}
+          spacing={38}
+          curved
           yAxisTextStyle={{
             color: globalStyles.colors.mediumGray,
             fontSize: 12,
@@ -53,7 +45,7 @@ const HomeCharts = ({ data }) => {
           xAxisLabelTextStyle={{
             color: globalStyles.colors.mediumGray,
             fontSize: 12,
-            width: 100,
+            width: 40,
             marginLeft: 7,
           }}
         />

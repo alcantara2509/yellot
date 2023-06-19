@@ -1,40 +1,16 @@
 import { useEffect, useState } from "react";
 import { Dimensions, View, Text } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
-import moment from "moment";
 import { globalStyles } from "../../../styles/globalStyles";
 import { styles } from "./styles";
+import { handleDataArray } from "../../../utils/handleDataArray";
 
 const StatsChart = ({ data }) => {
   const [dataChart, setDataChart] = useState([]);
   const [reference, setReference] = useState(60);
 
   useEffect(() => {
-    let newArray = [];
-
-    data?.generation?.forEach((x, i) => {
-      newArray.push({
-        value: x,
-        label:
-          data?.data_type === "daily"
-            ? moment(data?.x_labels[i]).format("DD/MM")
-            : data?.data_type === "monthly"
-            ? moment(data?.x_labels[i]).format("MM/YY")
-            : moment(data?.x_labels[i]).format("YYYY"),
-        spacing: 2,
-      });
-
-      if (i % 1 === 0) {
-        newArray.push({
-          value: data?.expected[i] || 0,
-          spacing: 16,
-          frontColor: globalStyles.colors.gray,
-        });
-      }
-    });
-
-    setReference(data?.expected?.[1]);
-    setDataChart(newArray);
+    handleDataArray({ data, setDataChart, setReference });
   }, [data]);
 
   return (
@@ -73,11 +49,11 @@ const StatsChart = ({ data }) => {
         <View style={globalStyles.flexRow}>
           <View style={[globalStyles.flexRow, styles.subtitleContainer]}>
             <View style={styles.squareReal}></View>
-            <Text style={styles.subtitleText}>Geração Real</Text>
+            <Text style={styles.subtitleText}>Produção Real</Text>
           </View>
           <View style={[globalStyles.flexRow, styles.subtitleContainer]}>
             <View style={styles.squareExpected}></View>
-            <Text style={styles.subtitleText}>Geração Esperada</Text>
+            <Text style={styles.subtitleText}>Produção Esperada</Text>
           </View>
         </View>
       </View>

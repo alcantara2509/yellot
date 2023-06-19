@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Button } from "react-native";
+import { View } from "react-native";
 import { useMyStore } from "../../../store";
 import { styles } from "./styles";
 import PeriodButtons from "./Buttons";

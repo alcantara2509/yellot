@@ -4,14 +4,17 @@ import Home from "../../screens/Home";
 import Stats from "../../screens/Stats";
 import Settings from "../../screens/Settings";
 import { globalStyles } from "../../styles/globalStyles";
-import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import { MaterialIcons, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { styles } from "./styles";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
+  const { primary, secondary, mediumGray } = globalStyles.colors;
   return (
     <Tab.Navigator
+      initialRouteName="Geração"
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -31,30 +34,14 @@ const Tabs = () => {
         component={Stats}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 2,
-              }}
-            >
+            <View style={styles.tabContainer}>
               <Ionicons
                 name="ios-stats-chart"
                 size={26}
-                color={
-                  focused
-                    ? globalStyles.colors.primary
-                    : globalStyles.colors.mediumGray
-                }
+                color={focused ? primary : mediumGray}
               />
               <Text
-                style={{
-                  fontWeight: 600,
-                  color: focused
-                    ? globalStyles.colors.primary
-                    : globalStyles.colors.mediumGray,
-                  fontSize: 13,
-                }}
+                style={[styles.text, { color: focused ? primary : mediumGray }]}
               >
                 Estatísticas
               </Text>
@@ -68,25 +55,12 @@ const Tabs = () => {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 10,
-              }}
-            >
+            <View style={styles.gradientTabContainer}>
               <LinearGradient
-                style={{
-                  width: 60,
-                  height: 60,
-                  borderRadius: 60 / 2,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  top: -30,
-                }}
+                style={styles.gradientContainer}
                 colors={[
-                  focused ? "#6200D1" : globalStyles.colors.mediumGray,
-                  focused ? "#943B93" : globalStyles.colors.mediumGray,
+                  focused ? primary : mediumGray,
+                  focused ? secondary : mediumGray,
                 ]}
                 start={{ x: 0, y: 0.5 }}
                 end={{ x: 1, y: 0.5 }}
@@ -94,14 +68,10 @@ const Tabs = () => {
                 <FontAwesome5 name="solar-panel" size={23} color="white" />
               </LinearGradient>
               <Text
-                style={{
-                  fontWeight: 600,
-                  color: focused
-                    ? globalStyles.colors.primary
-                    : globalStyles.colors.mediumGray,
-                  fontSize: 13,
-                  top: -23,
-                }}
+                style={[
+                  styles.text,
+                  { color: focused ? primary : mediumGray, top: -23 },
+                ]}
               >
                 Geração
               </Text>
@@ -111,36 +81,20 @@ const Tabs = () => {
       />
 
       <Tab.Screen
-        name="Configurações"
+        name="Contato"
         component={Settings}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 2,
-              }}
-            >
-              <Ionicons
-                name="ios-settings-sharp"
+            <View style={styles.tabContainer}>
+              <MaterialIcons
+                name="phone-in-talk"
                 size={28}
-                color={
-                  focused
-                    ? globalStyles.colors.primary
-                    : globalStyles.colors.mediumGray
-                }
+                color={focused ? primary : mediumGray}
               />
               <Text
-                style={{
-                  fontWeight: 600,
-                  color: focused
-                    ? globalStyles.colors.primary
-                    : globalStyles.colors.mediumGray,
-                  fontSize: 13,
-                }}
+                style={[styles.text, { color: focused ? primary : mediumGray }]}
               >
-                Configurações
+                Contato
               </Text>
             </View>
           ),

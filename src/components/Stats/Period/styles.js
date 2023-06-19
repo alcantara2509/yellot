@@ -19,4 +19,20 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: "green",
   },
+
+  gradientContainer: {
+    width: 120,
+    height: 30,
+    borderRadius: 14,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 10,
+    height: 30,
+    width: 120,
+  },
 });

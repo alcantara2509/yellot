@@ -1,13 +1,13 @@
 import { Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { style } from "./style";
+import { styles } from "./styles";
 import { globalStyles } from "../../../styles/globalStyles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const Banner = () => {
+const Banner = ({ data }) => {
   return (
     <LinearGradient
-      style={style.container}
+      style={styles.container}
       colors={["#6200D1", "#943B93"]}
       start={{ x: 0, y: 0.9 }}
       end={{ x: 0.9, y: 0.5 }}
@@ -16,17 +16,15 @@ const Banner = () => {
         <Text style={{ color: globalStyles.colors.white }}>
           KWH Gerados Hoje
         </Text>
-        <Text
-          style={{
-            color: globalStyles.colors.white,
-            fontSize: 44,
-            fontWeight: 700,
-          }}
-        >
-          38592.3
+        <Text style={[styles.text, { color: globalStyles.colors.white }]}>
+          {data?.totals?.kwh?.toFixed(1)}
         </Text>
       </View>
-      <MaterialCommunityIcons name="lightning-bolt" size={38} color="white" />
+      {+data?.totals?.kwh > 0 ? (
+        <MaterialCommunityIcons name="lightning-bolt" size={38} color="white" />
+      ) : (
+        <MaterialCommunityIcons name="close-thick" size={38} color="white" />
+      )}
     </LinearGradient>
   );
 };

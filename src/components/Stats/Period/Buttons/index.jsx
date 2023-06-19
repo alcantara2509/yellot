@@ -1,33 +1,26 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { Text, TouchableOpacity } from "react-native";
 import { globalStyles } from "../../../../styles/globalStyles";
+import { styles } from "../styles";
 
 const PeriodButtons = ({ selectedPeriod, setSelectedPeriod, period, text }) => {
   return (
     <LinearGradient
-      style={{
-        width: 120,
-        height: 30,
-        borderRadius: 14,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+      style={styles.gradientContainer}
       colors={[
-        selectedPeriod === period ? "#6200D1" : globalStyles.colors.lightGray,
-        selectedPeriod === period ? "#943B93" : globalStyles.colors.lightGray,
+        selectedPeriod === period
+          ? globalStyles.colors.primary
+          : globalStyles.colors.lightGray,
+        selectedPeriod === period
+          ? globalStyles.colors.secondary
+          : globalStyles.colors.lightGray,
       ]}
       start={{ x: 0, y: 0.5 }}
       end={{ x: 1, y: 0.5 }}
     >
       <TouchableOpacity
         onPress={() => setSelectedPeriod(period)}
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: 10,
-          height: 30,
-          width: 120,
-        }}
+        style={styles.button}
       >
         <Text
           style={{
