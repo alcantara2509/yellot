@@ -2,6 +2,8 @@
 
 Projeto desenvolvido para o teste técnico da empresa Yellot, utilizando React Native com Expo.
 
+![mockup](https://github.com/alcantara2509/yellot/blob/main/assets/images/yellot-github-01.png)
+
 ### Instalação e execução
 
 ```
