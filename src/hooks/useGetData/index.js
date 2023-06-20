@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { infoService } from "../../services/info.services";
 import { useMyStore } from "../../store";
 
-export const useGetAll = (period) => {
+export const useGetData = (period) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 

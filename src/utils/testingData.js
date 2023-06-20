@@ -1,0 +1,42 @@
+const testingData = {
+  data_type: "hourly",
+  x_labels: [
+    "05:00:00",
+    "06:00:00",
+    "07:00:00",
+    "08:00:00",
+    "09:00:00",
+    "10:00:00",
+    "11:00:00",
+    "12:00:00",
+    "13:00:00",
+    "14:00:00",
+    "15:00:00",
+    "16:00:00",
+    "17:00:00",
+  ],
+  generation: [0, 0, 0, 0.4, 4.9, 9.3, 12.5, 13.5, 13.8, 12.0, 1.5, 1.9, 2.2],
+  expected: [113.325],
+  totals: {
+    kwh: 72.0,
+    percentage: 63.53,
+    trees: 0.04,
+    co2: 8.96,
+  },
+};
+
+export const expectedArray = [
+  { label: "05:00", value: 0 },
+  { label: "06:00", value: 0 },
+  { label: "07:00", value: 0 },
+  { label: "08:00", value: 0.4 },
+  { label: "09:00", value: 4.9 },
+  { label: "10:00", value: 9.3 },
+  { label: "11:00", value: 12.5 },
+  { label: "12:00", value: 13.5 },
+  { label: "13:00", value: 13.8 },
+  { label: "14:00", value: 12 },
+  { label: "15:00", value: 1.5 },
+  { label: "16:00", value: 1.9 },
+  { label: "17:00", value: 2.2 },
+];

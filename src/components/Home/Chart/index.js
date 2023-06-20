@@ -3,19 +3,18 @@ import { Dimensions, View } from "react-native";
 import { LineChart } from "react-native-gifted-charts";
 import { globalStyles } from "../../../styles/globalStyles";
 
-const HomeCharts = ({ data }) => {
+export const handleXLabels = (items) =>
+  items?.map((e) => e.replace(/:[^:]*$/, ""));
+
+export const HomeCharts = ({ data }) => {
   const [dataChart, setDataChart] = useState([]);
 
-  const handleXLabels = (items) => items?.map((e) => e.replace(/:[^:]*$/, ""));
-
   useEffect(() => {
-    let newArray = [];
-
-    data?.generation?.forEach((x, i) => {
-      newArray.push({
+    const newArray = data?.generation?.map((x, i) => {
+      return {
         value: x,
         label: handleXLabels(data?.x_labels)[i],
-      });
+      };
     });
 
     setDataChart(newArray);

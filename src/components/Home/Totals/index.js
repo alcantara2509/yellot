@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import Items from "./Items";
 import { style } from "./styles";
 import Percentage from "../../../../assets/icons/icon_percentage.png";
