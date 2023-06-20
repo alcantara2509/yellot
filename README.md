@@ -19,7 +19,8 @@ $ yarn install
 # Inicie o projeto
 $ yarn start
 
-# Para visualizar o aplicativo basta fazer o download do Expo Go na PlayStore e fazer a leitura do QR Code que aparece no terminal
+# Para visualizar o aplicativo basta fazer o download do Expo Go na PlayStore 
+# e fazer a leitura do QR Code que aparece no terminal
 ```
 
 ### Testes automatizados (Jest e React Native Testing Library)
